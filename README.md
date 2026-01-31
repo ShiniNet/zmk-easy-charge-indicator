@@ -7,6 +7,7 @@ Minimal GPIO-based charge indicator driver for ZMK.
 ## Purpose
 This module was created to read Xiao BLE `CHG_GPIO` (`&gpio0 17`) and light an external LED connected outside the MCU.
 It provides a simple "charging only" indicator: the LED turns on while charging and turns off otherwise.
+When the Xiao BLE charge LED is on, this driver turns on the external LED as well.
 
 ## Usage
 1) Add the module to your ZMK build (west manifest or ZMK_EXTRA_MODULES):
@@ -46,7 +47,7 @@ manifest:
    };
 ```
 
-4) Connect Led and Registor to MCU's led-gpios on your PCB:
+4) Connect an LED and a resistor to the MCU's `led-gpios` on your PCB:
 
 
 <img width="540" height="320" alt="image" src="https://github.com/user-attachments/assets/57bb7d30-bdf0-48bc-bf0d-309ca9cb12ff" />
