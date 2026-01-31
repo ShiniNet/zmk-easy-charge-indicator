@@ -3,16 +3,42 @@
 Minimal GPIO-based charge indicator driver for ZMK.
 
 ## Usage
-1) Add the module to your ZMK build (west manifest or ZMK_EXTRA_MODULES).
-2) Enable the driver:
+1) Add the module to your ZMK build (west manifest or ZMK_EXTRA_MODULES):
+
+```yaml west.yml
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: ShiniNet                           # <--- add this
+      url-base: https://github.com/ShiniNet    # <--- add this
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
+    - name: zmk-easy-charge-indicator         # <--- add this
+      remote: ShiniNet                        # <--- add this
+      revision: main                          # <--- add this
+  self:
+    path: config
+```
+
+2) Enable the driver to your keyboard conf file:
+
+```ini
    CONFIG_ZMK_EASY_CHARGE_INDICATOR=y
+```
+
 3) Add a devicetree node in your shield/board overlay:
 
+```dts
    easy_charge_indicator: easy_charge_indicator {
        compatible = "zmk,easy-charge-indicator";
        charge-gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
        led-gpios = <&gpio0 15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
    };
+```
 
 Notes:
 - CHG is expected to be open-drain, active-low (low = charging).
