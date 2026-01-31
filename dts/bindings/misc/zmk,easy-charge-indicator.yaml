@@ -1,0 +1,15 @@
+description: |
+  ZMK easy charge indicator driver.
+
+compatible: "zmk,easy-charge-indicator"
+
+properties:
+  charge-gpios:
+    type: phandle-array
+    required: true
+    description: Charge status input GPIO (active-low open-drain recommended).
+
+  led-gpios:
+    type: phandle-array
+    required: true
+    description: LED control GPIO (active-low, open-drain output recommended).

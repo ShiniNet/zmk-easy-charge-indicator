@@ -1,0 +1,17 @@
+menuconfig ZMK_EASY_CHARGE_INDICATOR
+    bool "ZMK Easy Charge Indicator"
+    default y
+    depends on GPIO
+    depends on DT_HAS_ZMK_EASY_CHARGE_INDICATOR_ENABLED
+    help
+      Simple charge indicator driver for ZMK.
+
+if ZMK_EASY_CHARGE_INDICATOR
+
+config ZMK_EASY_CHARGE_INDICATOR_INIT_PRIORITY
+    int "Easy Charge Indicator init priority"
+    default 80
+    help
+      Initialization priority for the easy charge indicator driver.
+
+endif

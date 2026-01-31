@@ -1,0 +1,3 @@
+zephyr_library()
+
+zephyr_library_sources_ifdef(CONFIG_ZMK_EASY_CHARGE_INDICATOR zmk_easy_charge_indicator.c)

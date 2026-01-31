@@ -1,0 +1,1 @@
+add_subdirectory_ifdef(CONFIG_ZMK_EASY_CHARGE_INDICATOR misc)
