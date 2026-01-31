@@ -44,9 +44,14 @@ manifest:
    };
 ```
 
+4) Connect Led and Registor to MCU's led-gpios on your PCB:
+
+
+<img width="540" height="320" alt="image" src="https://github.com/user-attachments/assets/57bb7d30-bdf0-48bc-bf0d-309ca9cb12ff" />
+
+
 Notes:
-- CHG is expected to be open-drain, active-low (low = charging).
-- LED GPIO is driven open-drain, active-low (low = LED on).
-- If you need pull-ups, add GPIO_PULL_UP in the GPIO flags.
+- charge-gpios is expected to be open-drain, active-low (low = charging).
+- led-gpios is driven open-drain, active-low (low = LED on).
 - Add appropriate current limiting for the external LED (e.g., a series resistor) and verify LED polarity.
 - The indicator only reflects charging state; it does not show charge-complete or battery level.
