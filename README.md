@@ -2,6 +2,10 @@
 
 Minimal GPIO-based charge indicator driver for ZMK.
 
+## Purpose
+This module was created to read Xiao BLE `CHG_GPIO` (`&gpio0 17`) and light an external LED connected outside the MCU.
+It provides a simple "charging only" indicator: the LED turns on while charging and turns off otherwise.
+
 ## Usage
 1) Add the module to your ZMK build (west manifest or ZMK_EXTRA_MODULES):
 
@@ -35,7 +39,7 @@ manifest:
 ```dts
    easy_charge_indicator: easy_charge_indicator {
        compatible = "zmk,easy-charge-indicator";
-       charge-gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
+       charge-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
        led-gpios = <&gpio0 15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
    };
 ```
@@ -44,3 +48,5 @@ Notes:
 - CHG is expected to be open-drain, active-low (low = charging).
 - LED GPIO is driven open-drain, active-low (low = LED on).
 - If you need pull-ups, add GPIO_PULL_UP in the GPIO flags.
+- Add appropriate current limiting for the external LED (e.g., a series resistor) and verify LED polarity.
+- The indicator only reflects charging state; it does not show charge-complete or battery level.
